@@ -8,6 +8,12 @@ import (
 	"github.com/satori/go.uuid"
 )
 
+const (
+	SUBSCRIBE = "SUBSCRIBE"
+	TELL      = "TELL"
+	PART      = "UNSUBSCRIBE"
+)
+
 type Router struct {
 	Channels []Channel
 	Clients  []Client
