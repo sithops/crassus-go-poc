@@ -27,6 +27,7 @@ type Client struct {
 
 type Message struct {
 	Channel string   `json:"channel"`
+	Action  string   `json:"command"`
 	Args    []string `json:"args"`
 }
 
