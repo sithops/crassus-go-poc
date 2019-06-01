@@ -33,6 +33,7 @@ type Client struct {
 
 type Message struct {
 	Channel string   `json:"channel"`
+	From    string   `json:from"`
 	Action  string   `json:"command"`
 	Args    []string `json:"args"`
 }
@@ -83,6 +84,7 @@ func (rtr *Router) connectionHandler(w http.ResponseWriter, r *http.Request) {
 			log.Printf("error: %+v\n", err)
 			break
 		}
+		msg.From = client.ID
 		for i, v := range rtr.Channels {
 			if msg.Channel == v.ID {
 				rtr.Channels[i].Channel <- msg // Can't use v because it's a copy
