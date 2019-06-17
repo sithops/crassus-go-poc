@@ -18,7 +18,11 @@ func (r *Router) Run() {
 	log.Println("Starting Crassus router...")
 	http.HandleFunc("/ws", r.connectionHandler)
 	go r.handleMessages()
-	waitForSigterm()
+	err := http.ListenAndServe("127.0.0.1:8080", nil)
+	if err != nil {
+		log.Fatal("ListenAndServe: ", err)
+	}
+	//waitForSigterm()
 }
 
 func (r *Router) handleMessages() {
